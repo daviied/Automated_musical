@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>W key detection</title>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+</head>
+<body>
+    <h1>Press W key</h1>
+    <script>
+        var keyState = {};
+
+$(document).keypress(function(event) {
+    var key = event.which.toString();
+    if (!keyState[key]) {
+        keyState[key] = true;
+        $.get("/key", {"key": key});
+    }
+});
+
+$(document).keyup(function(event) {
+    var key = event.which.toString();
+    keyState[key] = false;
+    $.get("/key", {"key": key});
+});
+
+    </script>
+
+</body>
+</html>

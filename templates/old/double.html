@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>W key detection</title>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+</head>
+<body>
+    <h1>Press W key</h1>
+    <script>
+        $(document).keydown(function(event){
+            if(event.which == 87){
+                $.get("/key", {"key": "w"});
+            }
+            if(event.which == 83){
+                $.get("/key", {"key": "s"});
+            }
+            if(event.which == 65) {
+                $.get("/key", {"key": "a"});
+
+            }
+            if(event.which == 68) {
+                $.get("/key", {"key": "d"});
+
+            }
+        });
+    </script>
+
+</body>
+</html>

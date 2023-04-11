@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Web Page</title>
+  </head>
+  <body>
+    <h1>Welcome to my web page!</h1>
+    <p>This is some text that I want to display.</p>
+  </body>
+
+
+  <head>
+    <title>Text Input Example</title>
+  </head>
+  <body>
+    <h1> hh</h1>
+    <form>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name">
+      <br>
+      <button type="button" onclick="showName()">Submit</button>
+    </form>
+
+    <script>
+      function showName() {
+        var name = document.getElementById("name").value;
+        alert("Your name is " + name);
+      }
+    </script>
+  </body>
+
+
+</html>

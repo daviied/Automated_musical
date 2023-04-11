@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Detect Keypress Example</title>
+</head>
+<body>
+
+  <p>Press the "w" key to send a POST request to the server</p>
+
+  <form method="POST">
+    <label for="input">Enter text:</label>
+    <input type="text" id="input" name="input">
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    document.addEventListener('keydown', function(event) {
+      if (event.code === 'KeyW') {
+        // Get the value of the input field
+        const inputValue = document.getElementById('input').value;
+
+        // Create a new FormData object with the input value
+        const formData = new FormData();
+        formData.append('input', inputValue);
+
+        // Send a POST request to the server
+        fetch('/w', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => {
+          console.log('Request succeeded:', response);
+        })
+        .catch(error => {
+          console.error('Request failed:', error);
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>

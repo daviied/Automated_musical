@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello, World!</title>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  </head>
+  <body>
+    <h1>Hello, World!</h1>
+    
+    <p id="detected"></p>
+    <p id="expected"></p>
+    <button id="myButton">Detect Speach</button>
+  </body>
+  <script>
+    
+    var detected
+    var expected
+
+    $.get("/vars", {"vars": "detected"}).done(function(response) {
+            detected = response;
+            console.log(detected);
+            document.getElementById("detected").innerHTML = detected;
+
+            });
+
+    $.get("/vars", {"other": "b"}).done(function(response) {
+
+      expected = response;
+      document.getElementById("expected").innerHTML = expected;
+
+    });
+
+    document.getElementById("myButton").addEventListener("click", function() {
+      $.get("/speech", {"speech": "a"}).done(function(response) {
+        detected = response;
+        document.getElementById("detected").innerHTML = detected;
+
+      });
+
+    });
+
+  </script>
+</html>

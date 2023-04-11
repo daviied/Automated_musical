@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>W key detection</title>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  </head>
+  <body>
+    <h1>Press W key</h1>
+    <p id="myVariable"></p>
+    <p id="myThrottle"></p>
+    <script>
+
+      var throttle
+      var steering
+
+    $.get("/key", {"key": "sset"}).done(function(response) {
+            steering = response;
+            console.log(steering);
+            document.getElementById("myVariable").innerHTML = steering;
+
+            });
+   $.get("/key", {"key": "tset"}).done(function(responses) {
+            throttle = responses;
+            console.log(throttle);
+            document.getElementById("myThrottle").innerHTML = throttle;
+
+            });
+      
+      var keyState = {};
+      $(document).keydown(function(event) {
+        if (event.which == 87 && !keyState['w']) {
+          keyState['w'] = true;
+          $.get("/key", {
+            "key": "w"
+          });
+        }
+        if (event.which == 83 && !keyState['s']) {
+          keyState['s'] = true;
+          $.get("/key", {
+            "key": "s"
+          });
+        }
+        if (event.which == 65 && !keyState['a']) {
+          keyState['a'] = true;
+          $.get("/key", {
+            "key": "a"
+          });
+        }
+        if (event.which == 68 && !keyState['d']) {
+          keyState['d'] = true;
+          $.get("/key", {
+            "key": "d"
+          });
+        }
+        if (event.which == 82 && !keyState['shift']) {
+          keyState['shift'] = true;
+          $.get("/key", {
+            "key": "shift"
+          });
+        }
+        if (event.which == 70 && !keyState['ctrl']) {
+          keyState['ctrl'] = true;
+          $.get("/key", {
+            "key": "ctrl"
+          });
+        }
+        if (event.which == 81 && !keyState['q']) {
+          keyState['q'] = true;
+          $.get("/key", {
+            "key": "q"
+          });
+        }
+        if (event.which == 69 && !keyState['e']) {
+          keyState['e'] = true;
+          $.get("/key", {
+            "key": "e"
+          });
+        }
+      });
+      $(document).keyup(function(event) {
+        if (event.which == 87) {
+          keyState['w'] = false;
+          $.get("/key", {
+            "key": "wn"
+          });
+        }
+        if (event.which == 83) {
+          keyState['s'] = false;
+          $.get("/key", {
+            "key": "sn"
+          });
+        }
+        if (event.which == 65) {
+          keyState['a'] = false;
+          $.get("/key", {
+            "key": "an"
+          });
+        }
+        if (event.which == 68) {
+          keyState['d'] = false;
+          $.get("/key", {
+            "key": "dn"
+          });
+        }
+        if (event.which == 82) {
+          keyState['shift'] = false;
+          $.get("/key", {
+            "key": "shiftn"
+          }).done(function(responses) {
+           throttle = responses;
+            console.log(throttle);
+            document.getElementById("myThrottle").innerHTML = throttle;
+
+            });
+        }
+        if (event.which == 70) {
+          keyState['ctrl'] = false;
+          $.get("/key", {
+            "key": "ctrln"
+          }).done(function(responses) {
+           throttle = responses;
+            console.log(throttle);
+            document.getElementById("myThrottle").innerHTML = throttle;
+
+            });
+        }
+        if (event.which == 81) {
+          keyState['q'] = false;
+          $.get("/key", { "key": "qn"}).done(function(response) {
+           steering = response;
+            console.log(steering);
+            document.getElementById("myVariable").innerHTML = steering;
+
+            });
+
+          }
+
+
+        if (event.which == 69) {
+          keyState['e'] = false;
+          $.get("/key", {
+            "key": "en"
+          }).done(function(response) {
+           steering = response;
+            console.log(steering);
+            document.getElementById("myVariable").innerHTML = steering;
+
+            });
+        }
+        if (event.keyCode === 13) { // check if the enter key was pressed
+          window.location.href = '/new'; // change the URL to the new route
+        }
+      });
+    </script>
+  </body>
+</html>
