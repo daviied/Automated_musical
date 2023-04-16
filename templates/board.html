@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>lights</title>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <h1>welcome to the light controller</h1>
+    <button id="myButton">next</button>
+    <style>
+      button {
+          font-size: 1.5em;
+          padding: 0.5em;
+        }
+    </style>
+</head>
+<body>
+
+</body>
+<script>
+    document.getElementById("myButton").addEventListener("click", function() {
+      $.get("/next", {"next": "a"}).done(function(response) {
+        detected = response;
+        document.getElementById("detected").innerHTML = detected;
+
+      });
+
+    });
+</script>
+</html>
