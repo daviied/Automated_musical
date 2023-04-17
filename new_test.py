@@ -15,9 +15,8 @@ client = udp_client.SimpleUDPClient(x32_ip, x32_port)
 #str = "/ch/01/mix/fader"
 #client.send_message("/ch/01/mix/fader", 1)
 #client.send_message("/ch/01/mix/fader", 0)
-client.send_message("/main/st/config/color", 4)
-/ch/01/config/name
-/ch/01/config/color
+print(client.send_message("/status", 1))
+
 
 
 
